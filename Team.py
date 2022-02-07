@@ -462,8 +462,8 @@ class coach(member):
         
 
 #<-------------------------------||Team Class||--------------------------------------->
-p1=player('khaled',0,2020,pSalary=0)
-c=captain('Shenawy',1,2016)
+p1=player('Shenawy',0,2020,pSalary=0)
+c=captain('Shenawy',0,2016)
 #<<<<<<<<<<<<<<<<<<<<<<------Fields----->>>>>>>>>>>>>>>>>>>>>>>
 
 class team():
@@ -539,7 +539,8 @@ class team():
 #<-----------------//Team Captain//------------------->
     #getTeamCaptain
     def _get_teamCaptain(self):
-        return self.printCaptainInfo()
+        self.modifyCaptain()
+        self._teamCaptain.printPlayerData()
     #setTeamCaptain
     def _set_teamCaptain(self,tCaptain):
         self._teamCaptain=tCaptain
@@ -581,13 +582,14 @@ class team():
     #print Team Data
     def printTeamData(self):
         print('<------------------Team--------------------->')
-        print('Team Name Is: '+self._taemName)
+        print('Team Name Is: '+str(self._taemName))
         print('Team Position Is: ' +str(self._teamPosition))
         print('Team No. Players Is: '+str(self._numPlayers))
         print('<------------------Player--------------------->')
         self.printAllPlayers()
         print('<------------------Captain-------------------->')
-        self.printCaptainInfo()
+        self.modifyCaptain()
+        self._teamCaptain.printPlayerData()
         print('<------------------Coach---------------------->')
         self._teamCoach.printCoachData()
         print('<--------------------------------------------->')
@@ -596,12 +598,13 @@ class team():
     #Print Captain Info    
     def printCaptainInfo(self):
         print('<------------------Captain-------------------->')
-        self._teamCaptain.printCaptainData()
+        self.modifyCaptain()
+        self._teamCaptain.printPlayerData()
         
 
 
 
-    def addPlayer(self,pName,pNumber,sDate,pSalary=2000,pContractDuration=3,pNoMatches=8):
+    def addPlayer(self,pName,pNumber,sDate,pSalary=20000,pContractDuration=3,pNoMatches=8):
         
         for i in self._playerList:
             f=False
@@ -619,6 +622,7 @@ class team():
                         
                     if f==True:
                         i=player(pName,pNumber,sDate,pSalary,pContractDuration,pNoMatches)
+                        
                         if pNumber!=i._playerNumber:
                             self._numPlayers+=1
                          
@@ -650,7 +654,7 @@ class team():
             if i._numberMatches==y:
                 self._teamCaptain=i
                 
-        return self._teamCaptain.printPlayerData()
+        
         
 
     def _largestNoMatches(self):
