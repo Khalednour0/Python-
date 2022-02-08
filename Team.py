@@ -430,15 +430,11 @@ class coach(member):
 #<<<<<<<<<<<<<<<<<<<<<<<<------Constructor----->>>>>>>>>>>>>>>>>>>>>>>>>    
     #constructor
     def __init__(self,cName,cExp,cDate,salary=50000,duration=2,bonus=10000):    
-        self._coachExperience=cExp
         self.__setter_coachExperience(cExp)
         self._coachName= cName
         self._coachDate=cDate
-        self._coachBonus=bonus
         self.__setter_coachBonus(bonus)
-        self._coachDuration=duration
         self.__seteer_coachContractDuration(duration)
-        self._coachSalary=salary
         self.__setter_coachSalary(salary)
         
         
@@ -465,7 +461,6 @@ class coach(member):
         
 
 #<-------------------------------||Team Class||--------------------------------------->
-p1=player('Shenawy',0,2020,pSalary=0)
 c=captain('Shenawy',0,2016)
 #<<<<<<<<<<<<<<<<<<<<<<------Fields----->>>>>>>>>>>>>>>>>>>>>>>
 
