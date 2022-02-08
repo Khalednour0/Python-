@@ -571,7 +571,7 @@ class team():
         
 #<<<<<<<<<<<<<<<<<<<<<<<<------Constructor----->>>>>>>>>>>>>>>>>>>>>>>>>
     #Constructor
-    def __init__(self,tCoach,tPosition,tName,tCaptain=c,playerList=[p1],numPlayers=1):
+    def __init__(self,tCoach,tPosition,tName,tCaptain=c,playerList=[],numPlayers=0):
         self._teamCoach=tCoach
         self._taemName=tName
         self._teamPosition=tPosition
@@ -608,31 +608,34 @@ class team():
 
 
     def addPlayer(self,pName,pNumber,sDate,pSalary=20000,pContractDuration=3,pNoMatches=8):
-        
-        for i in self._playerList:
-            f=False
-            if pNumber==i._playerNumber:
-                while f==False:
-                    print('------There Is a Player With The Same Number------')
-                    pNumber=int(input('Enter Another Number: '))
-                    
+        if self._playerList==[]:
+            i=player(pName,pNumber,sDate,pSalary,pContractDuration,pNoMatches)
+        else:
+            for i in self._playerList:
+                    f=False
                     if pNumber==i._playerNumber:
-                        f=False
+                        while f==False:
+                            print('------There Is a Player With The Same Number------')
+                            pNumber=int(input('Enter Another Number: '))
+                            
+                            if pNumber==i._playerNumber:
+                                f=False
+                            else:
+                                f=True
+                                
+                            if f==True:
+                                i=player(pName,pNumber,sDate,pSalary,pContractDuration,pNoMatches)
+                                
+                                if pNumber!=i._playerNumber:
+                                    self._numPlayers+=1
+                                 
+                            else:
+                                continue
+                            
                     else:
-                        f=True
-                        
-                    if f==True:
                         i=player(pName,pNumber,sDate,pSalary,pContractDuration,pNoMatches)
-                        
-                        if pNumber!=i._playerNumber:
-                            self._numPlayers+=1
-                         
-                    else:
-                        continue
-                    
-            else:
-                i=player(pName,pNumber,sDate,pSalary,pContractDuration,pNoMatches)
-                   
+               
+                
         print('------------New Player Is Added------------')        
         self._playerList.append(i)
         self._numPlayers+=1
