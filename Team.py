@@ -400,7 +400,7 @@ class coach(member):
     coachExperience=property(__get_coachExperience,__set_coachExperience,__del_coachExperience)
 
 
-#<---------------//Coach Experience//------------------->
+#<---------------//Coach Bonus//------------------->
     #setterCoachBonus
     def __setter_coachBonus(self,bonus):
         while bonus>50000:
@@ -435,8 +435,11 @@ class coach(member):
         self._coachName= cName
         self._coachDate=cDate
         self._coachBonus=bonus
+        self.__setter_coachBonus(bonus)
         self._coachDuration=duration
+        self.__seteer_coachContractDuration(duration)
         self._coachSalary=salary
+        self.__setter_coachSalary(salary)
         
         
 
@@ -539,7 +542,7 @@ class team():
 #<-----------------//Team Captain//------------------->
     #getTeamCaptain
     def _get_teamCaptain(self):
-        self.modifyCaptain()
+        self._modifyCaptain()
         self._teamCaptain.printPlayerData()
     #setTeamCaptain
     def _set_teamCaptain(self,tCaptain):
@@ -588,7 +591,7 @@ class team():
         print('<------------------Player--------------------->')
         self.printAllPlayers()
         print('<------------------Captain-------------------->')
-        self.modifyCaptain()
+        self._modifyCaptain()
         self._teamCaptain.printPlayerData()
         print('<------------------Coach---------------------->')
         self._teamCoach.printCoachData()
@@ -598,7 +601,7 @@ class team():
     #Print Captain Info    
     def printCaptainInfo(self):
         print('<------------------Captain-------------------->')
-        self.modifyCaptain()
+        self._modifyCaptain()
         self._teamCaptain.printPlayerData()
         
 
@@ -609,8 +612,6 @@ class team():
         for i in self._playerList:
             f=False
             if pNumber==i._playerNumber:
-                print('------There Is a Player With The Same Number------')
-                
                 while f==False:
                     print('------There Is a Player With The Same Number------')
                     pNumber=int(input('Enter Another Number: '))
@@ -648,7 +649,7 @@ class team():
 
 
     #Modify Captain Info
-    def modifyCaptain(self):
+    def _modifyCaptain(self):
         self._largestNoMatches()
         for i in self._playerList:
             if i._numberMatches==y:
@@ -683,8 +684,15 @@ class team():
     #Serch Player
     def serchPlayer(self,pNumber):
         for i in self._playerList:
+            x=False
             if pNumber==i._playerNumber:
                 i.printPlayerData()
+                x=True
+                break
+        if x==False:
+            return print('No Player Exist With This Number')
+            
+            
 
     #Calc All Salary
     def calcAllSalary(self):
