@@ -55,6 +55,8 @@ class player(member):
                 self._playerNumber= pNumber
             else:
                 self._playerNumber= pNumber
+
+        self._playerNumber= pNumber
             
         
     #getPlayerNumber
@@ -83,6 +85,8 @@ class player(member):
                 self._playerSalary=salary
             else:
                 self._playerSalary=salary
+
+        self._playerSalary=salary
         
             
     #getSalary
@@ -124,6 +128,8 @@ class player(member):
                 self._contractDuration=duration
             else:
                 self._contractDuration=duration
+
+        self._contractDuration=duration
         
             
     #getContractDuration        
@@ -257,18 +263,20 @@ class captain(player):
 
 #<<<<<<<<<<<<<<<<<<<<<<<<------Constructor----->>>>>>>>>>>>>>>>>>>>>>>>>
     #Constructor
-    def __init__(self,pName,pNumber,sDate,NoMatches=0,bonus=5000):
-        super().__init__(pName,pNumber,sDate)
+    def __init__(self,pName,pNumber,sDate,NoMatches=0,bonus=5000,pSalary=20000,pDuration=3,NoPlayed=0):
+        super().__init__(pName,pNumber,sDate,pSalary,pDuration,NoPlayed)
         self._leadMatches=NoMatches
         self._bonus=bonus
         
 
 #<<<<<<<<<<<<<<<<<<<<<<<<------FUNCTIONS----->>>>>>>>>>>>>>>>>>>>>>>>>   
     #printPlayerData
-    def printCaptainData(self):
+    def printPlayerData(self):
         player.printPlayerData(self)
         print('Number Of Matches Led is: ', self._leadMatches)
         print('Bonus is: ',self._bonus)
+        print('')
+        print(str(self._playerName)+ ' Is The Team Captain') 
 
     #Function calcSalaryPerYear()
     def calcSalaryPerYear(self):
@@ -321,7 +329,8 @@ class coach(member):
                 self._coachSalary=salary 
             else:
                 self._coachSalary=salary
-        
+                
+        self._coachSalary=salary
 
     #getCoachSalary
     def __get_coachSalary(self):
@@ -360,8 +369,10 @@ class coach(member):
                 duration=(int(input('Enter Valid Duration: ')))
                 self._coachDuration=duration
             else:
-                self._coachDuration=date  
-
+                self._coachDuration=duration
+                
+        self._coachDuration=duration
+            
     #getCoachContractDuration
     def __get_coachContractDuration(self):
         return self._coachDuration
@@ -386,6 +397,8 @@ class coach(member):
                 self._coachExperience=exp
             else:
                 self._coachExperience=exp
+                
+        self._coachExperience=exp
 
     #getCoachExperience
     def __get_coachExperience(self):
@@ -580,14 +593,16 @@ class team():
     #print Team Data
     def printTeamData(self):
         print('<------------------Team--------------------->')
-        print('Team Name Is: '+str(self._taemName))
+        print('Team Name Is: '+(self._taemName))
         print('Team Position Is: ' +str(self._teamPosition))
         print('Team No. Players Is: '+str(self._numPlayers))
-        print('<------------------Player--------------------->')
+        print('Team Coach is: ' + str(coach._coachName))
+        print('\n')
         self.printAllPlayers()
         print('<------------------Captain-------------------->')
         self._modifyCaptain()
         self._teamCaptain.printPlayerData()
+        print('')
         print('<------------------Coach---------------------->')
         self._teamCoach.printCoachData()
         print('<--------------------------------------------->')
@@ -644,6 +659,7 @@ class team():
         for i in self._playerList:
             print('------------Next Player-------------')
             i.printPlayerData()
+            print('')
 
 
     #Modify Captain Info
@@ -651,7 +667,11 @@ class team():
         self._largestNoMatches()
         for i in self._playerList:
             if i._numberMatches==y:
-                self._teamCaptain=i
+                pName=i._playerName
+                pNumber=i._playerNumber
+                sDate=i._signingDate
+                x=captain(pName,pNumber,sDate)
+                self._teamCaptain=x
                 
         
         
@@ -681,14 +701,15 @@ class team():
         
     #Serch Player
     def serchPlayer(self,pNumber):
+        global x
         for i in self._playerList:
-            x=False
             if pNumber==i._playerNumber:
                 i.printPlayerData()
                 x=True
                 break
-        if x==False:
-            return print('No Player Exist With This Number')
+        
+        if x!=True:
+            print('No Player Exist With This Number')
             
             
 
@@ -699,18 +720,44 @@ class team():
             x+=i._playerSalary
 
         y=x+coach._coachSalary
-        return y
+        print('Total Team Salary is: ' + str(y))
 
     #OverLoad __len__
     def __len__(self):
-        return self._numPlayers
+        print('Number of Players in The Team is: '+str(self._numPlayers))
 
         
             
                 
         
 
-    
+#<<<<<<<<<<<<<<<<<<<<<<<<------RUN CODE----->>>>>>>>>>>>>>>>>>>>>>>>>
+c=coach('Klopp',10,2017)
+t=team(c,1,'Liverpool')
+t.addPlayer('Salah',11,2018,pNoMatches=200)
+t.addPlayer('Mane',10,2016,pNoMatches=150)
+t.addPlayer('Firmino',9,2018,pNoMatches=50)
+t.addPlayer('Van dijk',4,2017,pNoMatches=250)
+print('\n')
+t.__len__()
+print('\n')
+t.printCaptainInfo()
+print('\n')
+t.printTeamData()
+print('\n')
+t.calcAllSalary()
+print('\n')
+t.serchPlayer(10)
+print('\n')
+t.delPlayer(4)
+print('\n')
+t.printCaptainInfo()
+print('\n')
+t.printTeamData()
+print('\n')
+t.__len__()
+print('\n')
+t.calcAllSalary()
             
         
             
