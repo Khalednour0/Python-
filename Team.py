@@ -596,8 +596,7 @@ class team():
         print('Team Name Is: '+(self._taemName))
         print('Team Position Is: ' +str(self._teamPosition))
         print('Team No. Players Is: '+str(self._numPlayers))
-        print('Team Coach is: ' + str(coach._coachName))
-        print('\n')
+        print('')
         self.printAllPlayers()
         print('<------------------Captain-------------------->')
         self._modifyCaptain()
@@ -693,8 +692,11 @@ class team():
             if pNumber==i._playerNumber:
                 self._playerList.remove(i)
                 self._numPlayers-=1
-                x=0
+                print('------------------------------------------')
+                print(str(i._playerName) + ' Is Kicked Out of The Team')
                 print('no of Players is: '+str(self._numPlayers))
+                print('------------------------------------------')
+                break
             else:
                 print('no player exists with the given number')
                         
@@ -720,11 +722,15 @@ class team():
             x+=i._playerSalary
 
         y=x+coach._coachSalary
+        print('------------------------------')
         print('Total Team Salary is: ' + str(y))
+        print('------------------------------')
 
     #OverLoad __len__
     def __len__(self):
+        print('-----------------------------------------')
         print('Number of Players in The Team is: '+str(self._numPlayers))
+        print('-----------------------------------------')
 
         
             
@@ -734,10 +740,10 @@ class team():
 #<<<<<<<<<<<<<<<<<<<<<<<<------RUN CODE----->>>>>>>>>>>>>>>>>>>>>>>>>
 c=coach('Klopp',10,2017)
 t=team(c,1,'Liverpool')
+t.addPlayer('Van dijk',4,2017,pNoMatches=250)
 t.addPlayer('Salah',11,2018,pNoMatches=200)
 t.addPlayer('Mane',10,2016,pNoMatches=150)
 t.addPlayer('Firmino',9,2018,pNoMatches=50)
-t.addPlayer('Van dijk',4,2017,pNoMatches=250)
 print('\n')
 t.__len__()
 print('\n')
