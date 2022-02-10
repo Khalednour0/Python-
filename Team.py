@@ -631,7 +631,11 @@ class team():
                                 f=False
                             else:
                                 f=True
-                                
+
+                            for i in self._playerList:
+                                if pNumber==i._playerNumber:
+                                    f=False
+                                       
                             if f==True:
                                 i=player(pName,pNumber,sDate,pSalary,pContractDuration,pNoMatches)
                                 
