@@ -596,6 +596,8 @@ class team():
         print('Team Name Is: '+(self._taemName))
         print('Team Position Is: ' +str(self._teamPosition))
         print('Team No. Players Is: '+str(self._numPlayers))
+        print('Team Coach is: ' + str(self._teamCoach._coachName))
+        print('Team Captain Is: ' +self._teamCaptain._playerName)
         print('')
         self.printAllPlayers()
         print('<------------------Captain-------------------->')
@@ -700,7 +702,13 @@ class team():
                 print('------------------------------------------')
                 print(str(i._playerName) + ' Is Kicked Out of The Team')
                 print('no of Players is: '+str(self._numPlayers))
-                print('------------------------------------------')
+                if i._playerName==self._teamCaptain._playerName:
+                    print('')
+                    print(i._playerName+' Is No Longer The Team Captain and New Captain Is assigned to the Team')
+                    print('')
+                    self._modifyCaptain()
+                    print('New Team Captain Is ' + self._teamCaptain._playerName)
+                    print('------------------------------------------')
                 x=1
                 break
         if x==0:
@@ -714,7 +722,11 @@ class team():
         x=0
         for i in self._playerList:
             if pNumber==i._playerNumber:
+                print('-----------------------------------------')
+                print('Player with number ' +'('+str(i._playerNumber)+')'+ ' Is Found')
+                print('')
                 i.printPlayerData()
+                print('-----------------------------------------')
                 x=1
                 break
         
@@ -748,7 +760,11 @@ class team():
         x=0
         for i in self._playerList:
             if pNumber==i._playerNumber:
+                print('-----------------------------------------')
+                print('Player with number ' +'['+str(i._playerNumber)+']'+ ' Is Found')
+                print('')
                 i.printPlayerData()
+                print('-----------------------------------------')
                 return i._playerName
                 x=1
                 break
@@ -782,7 +798,7 @@ t.serchPlayer(10)
 print('\n')
 t[10]
 print('\n')
-t.delPlayer(10)
+t.delPlayer(4)
 print('\n')
 t.printCaptainInfo()
 print('\n')
