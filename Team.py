@@ -266,7 +266,7 @@ class captain(player):
     def __init__(self,pName,pNumber,sDate,NoMatches=0,bonus=5000,pSalary=20000,pDuration=3,NoPlayed=0):
         super().__init__(pName,pNumber,sDate,pSalary,pDuration,NoPlayed)
         self._leadMatches=NoMatches
-        self._bonus=bonus
+        self.__setter_Bonus(bonus)
         
 
 #<<<<<<<<<<<<<<<<<<<<<<<<------FUNCTIONS----->>>>>>>>>>>>>>>>>>>>>>>>>   
@@ -469,8 +469,8 @@ class coach(member):
 
     #Function Add Bonus
     def addBonus(self,bonus):
-        self._coachBonus=bonus
-        return 'Bonus Is ' +str(self._coachBonus)
+        self._coachBonus=bonus+self._coachBonus
+        return 'Total Bonus Is ' +str(self._coachBonus)
         
 
 #<-------------------------------||Team Class||--------------------------------------->
