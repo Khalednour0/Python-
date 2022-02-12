@@ -675,7 +675,12 @@ class team():
                 pName=i._playerName
                 pNumber=i._playerNumber
                 sDate=i._signingDate
-                x=captain(pName,pNumber,sDate)
+                NoPlayed=i._numberMatches
+                NoMatches=i._numberMatches
+                pSalary=i._playerSalary
+                pDuration=i._contractDuration
+                bonus=5000
+                x=captain(pName,pNumber,sDate,NoMatches,bonus,pSalary,pDuration,NoPlayed)
                 self._teamCaptain=x
                 
         
@@ -781,9 +786,9 @@ class team():
 #<<<<<<<<<<<<<<<<<<<<<<<<------RUN CODE----->>>>>>>>>>>>>>>>>>>>>>>>>
 c=coach('Klopp',10,2017)
 t=team(c,1,'Liverpool')
-t.addPlayer('Van dijk',4,2017,pNoMatches=250)
-t.addPlayer('Salah',11,2018,pNoMatches=200)
-t.addPlayer('Mane',10,2016,pNoMatches=150)
+t.addPlayer('Van dijk',4,2017,pNoMatches=250,pSalary=50000)
+t.addPlayer('Salah',11,2018,pNoMatches=200,pSalary=40000)
+t.addPlayer('Mane',10,2016,pNoMatches=150,pSalary=30000)
 t.addPlayer('Firmino',9,2018,pNoMatches=50)
 print('\n')
 t.__len__()
