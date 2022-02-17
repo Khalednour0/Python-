@@ -263,9 +263,9 @@ class captain(player):
 
 #<<<<<<<<<<<<<<<<<<<<<<<<------Constructor----->>>>>>>>>>>>>>>>>>>>>>>>>
     #Constructor
-    def __init__(self,pName,pNumber,sDate,NoMatches=0,bonus=5000,pSalary=20000,pDuration=3,NoPlayed=0):
+    def __init__(self,pName,pNumber,sDate,NoLedMatches=0,bonus=5000,pSalary=20000,pDuration=3,NoPlayed=0):
         super().__init__(pName,pNumber,sDate,pSalary,pDuration,NoPlayed)
-        self._leadMatches=NoMatches
+        self._leadMatches=NoLedMatches
         self.__setter_Bonus(bonus)
         
 
@@ -498,8 +498,7 @@ class team():
         self._taemName=tName
     #delTeamName
     def _del_teamName(self):
-        del self._taemName
-        self._taemName=None
+        print('You Cannot Delete This Item')
 
     teamName=property(_get_teamName,_set_teamName,_del_teamName)
 
@@ -513,8 +512,7 @@ class team():
         self._teamPosition=tPosition
     #delTeamName
     def _del_teamPosition(self):
-        del self._teamPosition
-        self._teamPosition=None
+        print('You Cannot Delete This Item')
 
     teamPosition=property(_get_teamPosition,_set_teamPosition,_del_teamPosition)
 
@@ -654,11 +652,10 @@ class team():
         print('------------New Player Is Added------------')        
         self._playerList.append(i)
         self._numPlayers+=1
-        print('no of Players is: '+str(self._numPlayers))
+        
 
 
 
-    
     #Print All Players                           
     def printAllPlayers(self):
         for i in self._playerList:
@@ -676,11 +673,11 @@ class team():
                 pNumber=i._playerNumber
                 sDate=i._signingDate
                 NoPlayed=i._numberMatches
-                NoMatches=i._numberMatches
+                NoLedMatches=i._numberMatches
                 pSalary=i._playerSalary
                 pDuration=i._contractDuration
                 bonus=5000
-                x=captain(pName,pNumber,sDate,NoMatches,bonus,pSalary,pDuration,NoPlayed)
+                x=captain(pName,pNumber,sDate,NoLedMatches,bonus,pSalary,pDuration,NoPlayed)
                 self._teamCaptain=x
                 
         
@@ -707,7 +704,7 @@ class team():
                 print('------------------------------------------')
                 print(str(i._playerName) + ' Is Kicked Out of The Team')
                 print('no of Players is: '+str(self._numPlayers))
-                if i._playerName==self._teamCaptain._playerName:
+                if i._playerNumber==self._teamCaptain._playerNumber:
                     print('')
                     print(i._playerName+' Is No Longer The Team Captain and New Captain Is assigned to the Team')
                     print('')
